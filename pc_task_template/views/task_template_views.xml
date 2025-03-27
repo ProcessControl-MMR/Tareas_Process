@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<odoo>
+    <data>
+        <record id="view_task_template_tree" model="ir.ui.view">
+            <field name="name">project.task.template.tree</field>
+            <field name="model">task.template</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="name"/>
+                    <field name="description"/>
+                    <field name="project_id"/>
+                    <field name="responsible_id_default"/>
+                    <field name="parent_id"/>
+                    <field name="task_ids"/>
+<!--                    <field name="task_category"/>-->
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_task_template_form" model="ir.ui.view">
+            <field name="name">project.task.template.form</field>
+            <field name="model">task.template</field>
+            <field name="arch" type="xml">
+                <form>
+                    <sheet>
+                        <group>
+                            <field name="name"/>
+                            <field name="description"/>
+                            <field name="project_id"/>
+                            <field name="responsible_id_default"/>
+                            <label for="interval_number"/>
+                            <div>
+                                <field name="interval_number" class="oe_inline"/>
+                                <field name="interval_type" class="oe_inline"/>
+                            </div>
+                            <field name="parent_id"/>
+                            <field name="child_ids"/>
+<!--                            <field name="task_category"/>-->
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="action_pc_task_template" model="ir.actions.act_window">
+            <field name="name">Plantillas de Tareas</field>
+            <field name="res_model">task.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+        <record id="action_pc_project_template" model="ir.actions.act_window">
+            <field name="name">Plantillas de Proyectos </field>
+            <field name="res_model">project.template</field>
+            <field name="view_mode">tree,form</field>
+            <field name="target">current</field>
+        </record>
+
+        <menuitem id="menu_pc_task_template_root"
+                  name="Plantillas"
+                  sequence="10"
+                  parent="project.menu_main_pm"
+        />
+
+        <menuitem
+                id="menu_pc_main_task_template"
+                name="Plantillas de tareas"
+                parent="menu_pc_task_template_root"
+                action="action_pc_task_template"
+                sequence="20"
+        />
+        <menuitem
+                id="menu_pc_main_project_template"
+                name="Plantillas de proyectos"
+                parent="menu_pc_task_template_root"
+                action="action_pc_project_template"
+                sequence="10"
+        />
+    </data>
+</odoo>

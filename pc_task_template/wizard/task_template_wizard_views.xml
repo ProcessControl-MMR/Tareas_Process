@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="task_template_wizard_view_form" model="ir.ui.view">
+        <field name="name">task.template.wizard.view.form</field>
+        <field name="model">task.template.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Create task from template">
+                <p class="text-muted">
+                    Creating tasks using templates allows you to streamline repetitive tasks by pre-defining information.
+                </p>
+                <group>
+                    <field name="task_template_id"/>
+                    <field name="responsible_id_default"/>
+                </group>
+                <group>
+                    <label for="interval_number"/>
+                    <div>
+                        <field name="interval_number" class="oe_inline"/>
+                        <field name="interval_type" class="oe_inline"/>
+                    </div>
+                </group>
+
+                <footer>
+                    <button string="Create" type="object" name="action_create_tasks" class="btn-primary" data-hotkey="q"/>
+                    <button string="Cancel" class="btn btn-secondary rounded-2" special="cancel" data-hotkey="x"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_task_template_wizard" model="ir.actions.act_window">
+        <field name="name">Create task from template</field>
+        <field name="res_model">task.template.wizard</field>
+        <field name="binding_model_id" ref="model_project_project"/>
+        <field name="view_mode">form</field>
+        <field name="context">{'default_project_id': active_id}</field>
+        <field name="target">new</field>
+    </record>
+</odoo>
